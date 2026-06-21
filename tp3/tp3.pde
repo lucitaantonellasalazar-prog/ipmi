@@ -4,7 +4,7 @@
 //Obra optica Nro35
 // cancion TVGirl https://www.youtube.com/watch?v=7j6C9METNm0&list=RD08Hj15EAB20&index=2
 
-// link de mi video https://youtu.be/5qMqkRoMeQ4 
+// link de mi video https://youtu.be/HKrX26scIZc
 
 PImage traitor;
 int cant = 500;
