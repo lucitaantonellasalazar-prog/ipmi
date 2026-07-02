@@ -1,12 +1,12 @@
 //Luz Antonella Salazar Mesias 
-//Nro legajo 148835/5
+//Nro legajo 127023/6
 //Programacion comision 5 
 //Obra optica Nro35
 // cancion TVGirl https://www.youtube.com/watch?v=7j6C9METNm0&list=RD08Hj15EAB20&index=2
 
 // link de mi video https://youtu.be/HKrX26scIZc
 
-PImage traitor;
+PImage imagen;
 int cant = 500;
 boolean estaRotando = false;
 float aceleracion = 0;
@@ -28,13 +28,13 @@ color colorEfecto = color(255);
 
 void setup () {
 size (800, 400); 
-traitor = loadImage("35.png");
+imagen = loadImage("35.png");
 }
 
 void draw() {
   background(0);
-  if (traitor != null) {
-    image(traitor, 0, 0, 400, 400);
+  if (imagen != null) {
+    image(imagen, 0, 0, 400, 400);
   }
 
   if (girandoZ) {
@@ -54,10 +54,8 @@ void draw() {
     dibujarEfecto();
     popMatrix();
   }
-  
-  gestionarRotacion();
 }
-
+//Crea la grilla de 10x10
 void dibujarGrilla(int offsetX, int offsetY) {
   int filas = 10;
   int cols = 10;
@@ -65,6 +63,7 @@ void dibujarGrilla(int offsetX, int offsetY) {
   float celdaH = 400.0 / filas;
 
   int elementosDibujados = 0;
+  //For anidado para grilla
   for (int f = 0; f < filas; f++) {
     for (int c = 0; c < cols; c++) {
       if (elementosDibujados <= contadorGrilla) {
@@ -84,7 +83,7 @@ void dibujarGrilla(int offsetX, int offsetY) {
     }
   }
 }
-
+//crea la copia de la obra optica
 void dibujarEfecto() {
   mod = ancho;
   noStroke();
@@ -114,11 +113,14 @@ void aplicarColores() {
   }
 }
 
-void gestionarRotacion() {}
 void mousePressed() {
-  estaRotando = !estaRotando;
+  if (mouseButton == LEFT) {
+    pantallaDerechaNegra = !pantallaDerechaNegra;
+  } else if (mouseButton == RIGHT) {
+    modoGrilla = true;
+    if (contadorGrilla < 99) contadorGrilla++;
+  }
 }
-//cambia el booleano a rotar 
 
 void keyPressed() {
   if (key == 'c') {
@@ -128,13 +130,14 @@ void keyPressed() {
   if (key == ' ') {
     modoGrilla = false; contadorGrilla = 0; pantallaDerechaNegra = false;
   }
-  if (key == 'l' || key == 'L') {
-    modoGrilla = true;
-    if (contadorGrilla < 99) contadorGrilla++;
-  }
-  if (key == 'u' || key == 'U') {
-    pantallaDerechaNegra = !pantallaDerechaNegra;
-  }
+  //Antiguo codigo 
+  //if (key == 'l' || key == 'L') {
+    //modoGrilla = true;
+    //if (contadorGrilla < 99) contadorGrilla++;
+  //}
+  //if (key == 'u' || key == 'U') {
+     //pantallaDerechaNegra = !pantallaDerechaNegra;
+  //}
   if (key == 'z' || key == 'Z') {
     girandoZ = !girandoZ; 
   }
@@ -144,16 +147,16 @@ void keyPressed() {
 float calcularVariacion() {
   return map(mouseX, 0, width, -0.1, 0.1) + random(-0.02, 0.02);
 }
-
+// calcula el centro de cada celda de la grilla 
 void chequearDistancia(int f, int c) {
   float celdaX = 400.0/10 * c + 20;
   float celdaY = 400.0/10 * f + 20;
   float d = dist(mouseX, mouseY, 400 + celdaX, celdaY);
 //funcion que retorna para generar un angulo pequeño angulo que se sumara a la rotacion
-
+// d una variable  
   if (d < 50) {
     colorEfecto = color(255, 255, 0); 
   } else {
-    colorEfecto = color(255);
+   colorEfecto = color(255);
   }
 }
