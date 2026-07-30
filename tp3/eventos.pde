@@ -2,14 +2,14 @@ void mousePressed() {
   if (mouseButton == LEFT) {
     girando = !girando; 
   } else if (mouseButton == RIGHT) {
-    generarColoresAzulFucsia(); 
+    generarColorescelesteyrosita(); 
   }
 }
-//
+
 void keyPressed() {
   if (key == 'l' || key == 'L') {
-    inicializarBlancos();
-    inicializarNegros();
+    inicioBlancos();
+    inicioNegros();
     girando = false; 
     angulo = 0;
   }
